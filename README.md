@@ -20,8 +20,10 @@ Documentation
 For now, this library provides some base classes that you can extend to get
 some added functionality.
 
-# Blake\SymfonyExtensions\Controller\Controller
+### Blake\SymfonyExtensions\Controller\Controller
 * Provides a `#getRepository($className)` method that is a shortcut for `#getDoctrine()->getRepository($className)`
 
-# Blake\SymfonyExtensions\Entity\Entity
-* Provides magic getters and setters so you don't need to generate and maintain them.
+### Blake\SymfonyExtensions\Entity\Entity
+* Provides magic getters and setters so you don't need to generate and maintain them
+     * **E.g.** `getName()` will return the value of `$name` if it exists
+     * *Properties can be ignored by prepending them with an underscore (`_`)*
