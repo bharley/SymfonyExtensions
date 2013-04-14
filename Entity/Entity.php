@@ -2,6 +2,8 @@
 
 namespace Blake\SymfonyExtensions\Entity;
 
+use BadMethodCallException;
+
 /**
  * Provides magic getters and setters for all properties.
  *
@@ -31,9 +33,21 @@ abstract class Entity
 		$property = lcfirst($matches[2]);
 		$skip = $property[0] == '_';
 
-		if ($action == 'get')
+		if (strlen($property) > 0 && $property[0] != '_')
 		{
-
+			if (property_exists($this, $property))
+			{
+				if ($action == 'get')
+				{
+					return $this->{$property};
+				}
+				else
+				{
+					$this->{$property} = $arguments[0];
+				}
+			}
 		}
+
+		throw new BadMethodCallException(get_class($this) ." does not have method '$method'");
 	}
 }
